@@ -1,14 +1,23 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
+import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+
+require('dotenv').config();
 
 ReactDOM.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <HashRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </HashRouter>
   </StrictMode>,
   document.getElementById('root')
 );
