@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Image, Spinner, Text } from '@chakra-ui/react';
+import { Flex, Image, Spinner, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,12 +1,10 @@
 import {
-  Button,
-  Divider,
-  Flex,
+  Button, Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  useToast,
+  useToast
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { React, useState } from 'react';
