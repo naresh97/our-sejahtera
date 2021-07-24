@@ -1,12 +1,9 @@
-import {
-  ChakraProvider,
-  theme
-} from '@chakra-ui/react';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 import { React } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Home from './screens/HomeScreen'
-import Login from './screens/LoginScreen'
-
+import Home from './screens/HomeScreen';
+import Login from './screens/LoginScreen';
+import Create from './screens/CreateScreen';
 
 function App() {
   return (
@@ -18,7 +15,8 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/validate">
+        <Route path="/create">
+          <Create />
         </Route>
         <Route path="/">
           <Redirect to="/home" />
