@@ -1,4 +1,4 @@
-import { FormControl, Box, Flex, Image, FormLabel, Input, Select, Heading, Button, useToast } from '@chakra-ui/react';
+import { Button, Flex, FormControl, FormLabel, Heading, Input, Select, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';

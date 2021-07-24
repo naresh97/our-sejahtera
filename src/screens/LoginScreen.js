@@ -36,6 +36,13 @@ function Login() {
       return;
     }
 
+    toast({
+      title: 'Loading',
+      status: 'info',
+      duration: 9000,
+      isClosable: true,
+    });
+
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/login`,
@@ -109,14 +116,6 @@ function Login() {
             Login!
           </Button>
         </form>
-        <Divider mb={6} />
-        <Button
-          onClick={() => {
-            history.push('/validate');
-          }}
-        >
-          Get Validated!
-        </Button>
       </Flex>
     </Flex>
   );

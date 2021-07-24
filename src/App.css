@@ -1,0 +1,9 @@
+#QRFlex{
+    width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+    #QRFlex {
+        width: 90% ;
+    }
+}
