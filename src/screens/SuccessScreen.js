@@ -13,7 +13,7 @@ function Success(){
         >
           <Flex direction="column" background="white" p={12} rounded={6}>
             <Heading>Success!</Heading>
-            <Text fontSize="lg">We have succesfully saved your contact! Stay safe out there!</Text>
+            <Text fontSize="lg">We have succesfully saved your contact! Stay safe out there, and let others scan your QR code too!</Text>
             <Button onClick={()=>{history.push("/home")}}>Return home</Button>
           </Flex>
         </Flex>

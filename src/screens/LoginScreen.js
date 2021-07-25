@@ -21,7 +21,7 @@ function Login() {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (isAuthenticated) return <Redirect to="/home" />;
-
+  
   const handleSubmit = e => {
     if (!email | !password) {
       toast({
@@ -74,7 +74,8 @@ function Login() {
           duration: 9000,
           isClosable: true,
         });
-      });
+      })
+      .finally(() => { toast.closeAll(); });
 
     e.preventDefault();
   };

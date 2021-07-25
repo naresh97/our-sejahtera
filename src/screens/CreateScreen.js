@@ -63,7 +63,7 @@ function Create() {
             .then(response => {
                 if (response.data.success) {
                     dispatch(authLogin());
-                    history.push('/home');
+                    history.push('/success');
                 } else {
                     toast({
                         title: 'An error occurred',

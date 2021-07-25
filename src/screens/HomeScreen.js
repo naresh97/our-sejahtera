@@ -1,6 +1,6 @@
 import { Flex, Image, Spinner, Text } from '@chakra-ui/react';
 import axios from 'axios';
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
@@ -9,8 +9,7 @@ function QRCode() {
   const [url, setURL] = useState(null);
   const dispatch = useDispatch();
 
-  if (!url) {
-    setURL("none");
+  useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/code`, { withCredentials: true })
       .then(response => {
@@ -23,10 +22,12 @@ function QRCode() {
           dispatch(authLogout());
         }
       });
-  } else if(url === "none"){
-    return <Spinner/>
-  }else {
+  }, [])
+
+  if (url) {
     return <Image src={url} />;
+  } else {
+    return <Spinner />;
   }
 
 }
@@ -43,8 +44,8 @@ function Home() {
       justifyContent="center"
     >
       <Flex direction="column" background="white" p={12} rounded={6} id="QRFlex">
-          <QRCode />
-          <Text align="center" fontSize="lg">This is your QR code. Show this to others to allow them to confirm a contact, or allow them to create an account!</Text>
+        <QRCode />
+        <Text align="center" fontSize="lg">This is your QR code. Show this to others to allow them to confirm a contact, or allow them to create an account!</Text>
       </Flex>
     </Flex>
   );
