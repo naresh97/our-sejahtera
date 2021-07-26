@@ -9,11 +9,13 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    authLogin: (state, action) => {
+    authLogin: state => {
       state.isAuthenticated = true;
+      Cookies.set('authorized', true);
     },
     authLogout: state => {
       state.isAuthenticated = false;
+      Cookies.set('authorized', false);
     },
   },
 });

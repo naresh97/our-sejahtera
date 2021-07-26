@@ -10,7 +10,7 @@ import axios from 'axios';
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
-import { authLogin } from '../features/auth/authSlice';
+import { authLogin, authLogout } from '../features/auth/authSlice';
 
 function Login() {
   const [email, setEmail] = useState(null);
@@ -21,7 +21,7 @@ function Login() {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (isAuthenticated) return <Redirect to="/home" />;
-  
+
   const handleSubmit = e => {
     if (!email | !password) {
       toast({
@@ -57,6 +57,7 @@ function Login() {
           dispatch(authLogin());
           history.push('/home');
         } else {
+          dispatch(authLogout());
           toast({
             title: 'An error occurred',
             description: response.data.message,
@@ -67,6 +68,7 @@ function Login() {
         }
       })
       .catch(err => {
+        dispatch(authLogout());
         toast({
           title: 'An error occurred',
           description: 'Sorry, an error occurred on our side.',
