@@ -1,10 +1,11 @@
 import {
-  Button, Flex,
+  Button,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { React, useState } from 'react';
@@ -77,7 +78,9 @@ function Login() {
           isClosable: true,
         });
       })
-      .finally(() => { toast.closeAll(); });
+      .finally(() => {
+        toast.closeAll();
+      });
 
     e.preventDefault();
   };

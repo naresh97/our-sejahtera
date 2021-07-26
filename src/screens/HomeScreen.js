@@ -22,14 +22,13 @@ function QRCode() {
           dispatch(authLogout());
         }
       });
-  }, [])
+  }, []);
 
   if (url) {
     return <Image src={url} />;
   } else {
     return <Spinner />;
   }
-
 }
 
 function Home() {
@@ -43,9 +42,18 @@ function Home() {
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" background="white" p={12} rounded={6} id="QRFlex">
+      <Flex
+        direction="column"
+        background="white"
+        p={12}
+        rounded={6}
+        id="QRFlex"
+      >
         <QRCode />
-        <Text align="center" fontSize="lg">This is your QR code. Show this to others to allow them to confirm a contact, or allow them to create an account!</Text>
+        <Text align="center" fontSize="lg">
+          This is your QR code. Show this to others to allow them to confirm a
+          contact, or allow them to create an account!
+        </Text>
       </Flex>
     </Flex>
   );
