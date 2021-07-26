@@ -22,7 +22,7 @@ function QRCode() {
           dispatch(authLogout());
         }
       });
-  }, []);
+  }, [dispatch]);
 
   if (url) {
     return <Image src={url} />;

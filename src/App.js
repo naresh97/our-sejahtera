@@ -6,6 +6,7 @@ import Login from './screens/LoginScreen';
 import Create from './screens/CreateScreen';
 import Success from './screens/SuccessScreen';
 import './App.css';
+import Verify from './screens/VerifyScreen';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/success">
           <Success />
         </Route>
+        <Route path="/verify/:id" component={Verify}/>
         <Route path="/">
           <Redirect to="/home" />
         </Route>
