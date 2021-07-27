@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   Flex,
   FormControl,
   FormLabel,
@@ -82,6 +83,8 @@ function Create() {
     >
       <Flex direction="column" background="white" p={12} rounded={6}>
         <Heading mb={6}>Create Account</Heading>
+        <Button onClick={()=>{history.push("/login");}} mb={6}>I already have an account!</Button>
+        <Divider mb={6} />
         <form onSubmit={handleSubmit}>
           <FormControl mb={6}>
             <FormLabel>Telegram Username:</FormLabel>

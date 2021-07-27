@@ -57,7 +57,11 @@ function Login() {
         if (response.data.authorized) {
           dispatch(authLogin());
           toast.closeAll();
-          history.push('/home');
+          if(response.data.contactSuccess){
+            history.push('/success');
+          }else{
+            history.push('/home');
+          }
         } else {
           dispatch(authLogout());
           toast({
