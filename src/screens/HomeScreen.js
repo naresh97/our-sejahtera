@@ -18,7 +18,9 @@ function QRCode() {
         }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if(!err.response){
+          console.log("No response... Strange");
+        }else if (err.response.status === 401) {
           dispatch(authLogout());
         }
       });

@@ -5,7 +5,7 @@ import {
   FormLabel,
   Heading,
   Input,
-  useToast,
+  useToast
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { React, useState } from 'react';
@@ -14,7 +14,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { authLogin, authLogout } from '../features/auth/authSlice';
 
 function Login() {
-  const [email, setEmail] = useState(null);
+  const [telegram, setTelegram] = useState(null);
   const [password, setPassword] = useState(null);
   const toast = useToast();
   const history = useHistory();
@@ -24,10 +24,10 @@ function Login() {
   if (isAuthenticated) return <Redirect to="/home" />;
 
   const handleSubmit = e => {
-    if (!email | !password) {
+    if (!telegram | !password) {
       toast({
         title: 'Invalid Login',
-        description: 'Please fill in email and password',
+        description: 'Please fill in Telegram Username and password',
         status: 'error',
         duration: 9000,
         isClosable: true,
@@ -46,7 +46,7 @@ function Login() {
       .post(
         `${process.env.REACT_APP_API_URL}/login`,
         {
-          email: email,
+          telegram: telegram,
           password: password,
         },
         {
@@ -56,6 +56,7 @@ function Login() {
       .then(response => {
         if (response.data.authorized) {
           dispatch(authLogin());
+          toast.closeAll();
           history.push('/home');
         } else {
           dispatch(authLogout());
@@ -77,9 +78,6 @@ function Login() {
           duration: 9000,
           isClosable: true,
         });
-      })
-      .finally(() => {
-        toast.closeAll();
       });
 
     e.preventDefault();
@@ -101,15 +99,14 @@ function Login() {
         </Heading>
         <form onSubmit={handleSubmit}>
           <FormControl mb={6}>
-            <FormLabel>Email address</FormLabel>
+            <FormLabel>Telegram Username:</FormLabel>
             <Input
-              type="email"
               colorScheme="teal"
-              onChange={event => setEmail(event.target.value)}
+              onChange={event => setTelegram(event.target.value)}
             />
           </FormControl>
           <FormControl mb={6}>
-            <FormLabel>Password</FormLabel>
+            <FormLabel>Password:</FormLabel>
             <Input
               type="password"
               colorScheme="teal"
