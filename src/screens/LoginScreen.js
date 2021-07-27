@@ -70,14 +70,27 @@ function Login() {
         }
       })
       .catch(err => {
-        dispatch(authLogout());
-        toast({
-          title: 'An error occurred',
-          description: 'Sorry, an error occurred on our side.',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        });
+        if(err.response){
+          if(err.response.status === 401){
+            dispatch(authLogout());
+            toast({
+              title: 'Login Failed',
+              description: 'The wrong credentials were used.',
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            });
+          }
+        }else{
+          toast({
+            title: 'An error occurred',
+            description: 'Sorry, an error occurred on our side.',
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          });
+        }
+        
       });
 
     e.preventDefault();
