@@ -7,6 +7,7 @@ import Create from './screens/CreateScreen';
 import Success from './screens/SuccessScreen';
 import './App.css';
 import Verify from './screens/VerifyScreen';
+import Scanner from './screens/ScannerScreen';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route path="/success">
           <Success />
+        </Route>
+        <Route path="/scanner">
+          <Scanner />
         </Route>
         <Route path="/verify/:id" component={Verify}/>
         <Route path="/">

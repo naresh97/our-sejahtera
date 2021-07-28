@@ -1,8 +1,8 @@
-import { Flex, Image, Spinner, Text } from '@chakra-ui/react';
+import { Button, Divider, Flex, Image, Spinner, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
 
 function QRCode() {
@@ -34,9 +34,11 @@ function QRCode() {
 }
 
 function Home() {
+  const history = useHistory();
+
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (!isAuthenticated) return <Redirect to="/login" />;
-
+  
   return (
     <Flex
       height="100vh"
@@ -52,10 +54,12 @@ function Home() {
         id="QRFlex"
       >
         <QRCode />
-        <Text align="center" fontSize="lg">
+        <Text mb={6} align="center" fontSize="lg">
           This is your QR code. Show this to others to allow them to confirm a
           contact, or allow them to create an account!
         </Text>
+        <Divider mb={6} />
+        <Button onClick={()=>{history.push("/scanner");}}>Scan a QR Code</Button>
       </Flex>
     </Flex>
   );
