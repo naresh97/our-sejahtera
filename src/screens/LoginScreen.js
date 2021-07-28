@@ -1,21 +1,14 @@
 import {
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  useToast
+  Flex, Heading, useToast
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { React, useState } from 'react';
+import { React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
+import TelegramLoginButton from 'react-telegram-login';
 import { authLogin, authLogout } from '../features/auth/authSlice';
 
 function Login() {
-  const [telegram, setTelegram] = useState(null);
-  const [password, setPassword] = useState(null);
   const toast = useToast();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,31 +16,12 @@ function Login() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (isAuthenticated) return <Redirect to="/home" />;
 
-  const handleSubmit = e => {
-    if (!telegram | !password) {
-      toast({
-        title: 'Invalid Login',
-        description: 'Please fill in Telegram Username and password',
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-      });
-      return;
-    }
-
-    toast({
-      title: 'Loading',
-      status: 'info',
-      duration: 9000,
-      isClosable: true,
-    });
-
+  const handleTelegramResponse = (response) => {
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/login`,
         {
-          telegram: telegram,
-          password: password,
+          telegramResponse: response,
         },
         {
           withCredentials: true,
@@ -96,8 +70,6 @@ function Login() {
         }
         
       });
-
-    e.preventDefault();
   };
 
   return (
@@ -114,26 +86,7 @@ function Login() {
         <Heading size="lg" mb={4}>
           Login
         </Heading>
-        <form onSubmit={handleSubmit}>
-          <FormControl mb={6}>
-            <FormLabel>Telegram Username:</FormLabel>
-            <Input
-              colorScheme="teal"
-              onChange={event => setTelegram(event.target.value)}
-            />
-          </FormControl>
-          <FormControl mb={6}>
-            <FormLabel>Password:</FormLabel>
-            <Input
-              type="password"
-              colorScheme="teal"
-              onChange={event => setPassword(event.target.value)}
-            />
-          </FormControl>
-          <Button mb={6} type="submit">
-            Login!
-          </Button>
-        </form>
+        <TelegramLoginButton dataOnauth={handleTelegramResponse} botName={process.env.REACT_APP_TELEGRAM_BOT_NAME} />
       </Flex>
     </Flex>
   );
