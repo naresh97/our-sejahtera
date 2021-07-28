@@ -3,7 +3,6 @@ import { React } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Home from './screens/HomeScreen';
 import Login from './screens/LoginScreen';
-import Create from './screens/CreateScreen';
 import Success from './screens/SuccessScreen';
 import './App.css';
 import Verify from './screens/VerifyScreen';
@@ -17,9 +16,6 @@ function App() {
         </Route>
         <Route path="/login">
           <Login />
-        </Route>
-        <Route path="/create">
-          <Create />
         </Route>
         <Route path="/success">
           <Success />

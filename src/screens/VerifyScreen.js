@@ -22,7 +22,7 @@ function Verify(props) {
                     if (response.data.loggedIn) {
                         history.push("/success");
                     } else {
-                        history.push("/create");
+                        history.push("/login");
                     }
                 }
             })
