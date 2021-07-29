@@ -30,6 +30,13 @@ function Scanner() {
       const re = /verify\/.*$/;
       const hash = re.exec(scanData);
       if (hash) {
+        toast({
+          title: "Checking QR code.",
+          description: "Hold on, we're checking this QR code.",
+          status: 'info',
+          duration: 10000,
+          isClosable: false
+        });
         axios
           .post(
             `${process.env.REACT_APP_API_URL}/verify`,
@@ -41,6 +48,7 @@ function Scanner() {
           .then(res => {
             if (res.data.success) {
               if (res.data.loggedIn) {
+                toast.closeAll();
                 toast({
                   title: 'Contact Succesfully Logged',
                   status: 'info',
@@ -54,12 +62,21 @@ function Scanner() {
             }
           })
           .catch(e => {
+            toast.closeAll();
             toast({
               title: 'Bad Verification',
               status: 'error',
               duration: 2000,
             });
           });
+      }else{
+        toast.closeAll();
+        toast({
+          title: "Bad QR code",
+          status: 'error',
+          duration: 3000,
+          isClosable: true
+        });
       }
     }
   }, [scanData, dispatch, history, toast]);

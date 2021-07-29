@@ -17,6 +17,13 @@ function Login() {
   if (isAuthenticated) return <Redirect to="/home" />;
 
   const handleTelegramResponse = (response) => {
+    toast({
+      title: "Logging you in",
+      description: "Hold on, we're logging you in.",
+      status: 'info',
+      duration: 10000,
+      isClosable: false
+    });
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/login`,
@@ -37,6 +44,7 @@ function Login() {
             history.push('/home');
           }
         } else {
+          toast.closeAll();
           dispatch(authLogout());
           toast({
             title: 'An error occurred',
@@ -48,6 +56,7 @@ function Login() {
         }
       })
       .catch(err => {
+        toast.closeAll();
         if(err.response){
           if(err.response.status === 401){
             dispatch(authLogout());

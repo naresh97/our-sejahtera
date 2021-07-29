@@ -35,6 +35,12 @@ function QRCode() {
 
 function Home() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(authLogout());
+    history.push("/login");
+  }
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (!isAuthenticated) return <Redirect to="/login" />;
@@ -59,7 +65,9 @@ function Home() {
           contact, or allow them to create an account!
         </Text>
         <Divider mb={6} />
-        <Button onClick={()=>{history.push("/scanner");}}>Scan a QR Code</Button>
+        <Button mb={6} onClick={()=>{history.push("/scanner");}}>Scan a QR Code</Button>
+        <Divider mb={10} />
+        <Button mb={6} onClick={handleLogout}>Log Out!</Button>
       </Flex>
     </Flex>
   );
