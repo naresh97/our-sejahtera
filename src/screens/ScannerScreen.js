@@ -55,7 +55,12 @@ function Scanner() {
                   duration: 2000,
                 });
               } else {
-                console.log('Time to logout!');
+                toast({
+                  title: "You're not logged in!",
+                  description: "Please log in and try again!",
+                  status: 'error',
+                  duration: 2000,
+                });
                 dispatch(authLogout());
                 history.push('/login');
               }
