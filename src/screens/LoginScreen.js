@@ -95,7 +95,7 @@ function Login() {
         id="contentFlex"
       >
         <Heading size="xl" mb={6}>
-          SSR Covid Tracing
+          OurSejahtera Contact Tracing
         </Heading>
         <Heading size="lg" mb={4}>
           Login
@@ -117,7 +117,7 @@ function Login() {
           All the code for this project is{' '}
           <Link
             color="teal.500"
-            href="https://github.com/naresh97/ssr-tracing"
+            href="https://github.com/naresh97/our-sejahtera"
             isExternal
           >
             Open Source
