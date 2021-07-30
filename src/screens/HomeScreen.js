@@ -1,6 +1,14 @@
-import { Button, Divider, Flex, Image, Spinner, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Divider,
+  Flex,
+  Image,
+  Link,
+  Spinner,
+  Text,
+} from '@chakra-ui/react';
 import axios from 'axios';
-import { React, useEffect, useState } from 'react';
+import { Fragment, React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
@@ -18,9 +26,9 @@ function QRCode() {
         }
       })
       .catch(err => {
-        if(!err.response){
-          console.log("No response... Strange");
-        }else if (err.response.status === 401) {
+        if (!err.response) {
+          console.log('No response... Strange');
+        } else if (err.response.status === 401) {
           dispatch(authLogout());
         }
       });
@@ -39,12 +47,12 @@ function Home() {
 
   const handleLogout = () => {
     dispatch(authLogout());
-    history.push("/login");
-  }
+    history.push('/login');
+  };
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (!isAuthenticated) return <Redirect to="/login" />;
-  
+
   return (
     <Flex
       height="100vh"
@@ -65,9 +73,34 @@ function Home() {
           contact, or allow them to create an account!
         </Text>
         <Divider mb={6} />
-        <Button mb={6} onClick={()=>{history.push("/scanner");}}>Scan a QR Code</Button>
-        <Divider mb={10} />
-        <Button mb={6} onClick={handleLogout}>Log Out!</Button>
+        <Button
+          mb={6}
+          onClick={() => {
+            history.push('/scanner');
+          }}
+        >
+          Scan a QR Code
+        </Button>
+        {process.env.REACT_APP_DONATE_LINK && (
+          <Fragment>
+            <Divider mb={6} />
+            <Link href={process.env.REACT_APP_DONATE_LINK}>
+              <Button style={{ width: '100%  ' }} mb={6} colorScheme="blue">
+                Donate!
+              </Button>
+            </Link>
+            <Text mb={6}>
+              Servers require money to run, and apps require labor to develop
+              and maintain. You can show your support by donating what you can.
+              Every cent counts, buy me my next coffee, or help pay for a month
+              of server usage!
+            </Text>
+          </Fragment>
+        )}
+        <Divider mb={6} />
+        <Button colorScheme="red" mb={6} onClick={handleLogout}>
+          Log Out!
+        </Button>
       </Flex>
     </Flex>
   );

@@ -1,9 +1,20 @@
+:root {
+  background: var(--chakra-colors-teal-100);
+}
+
 #QRFlex {
   width: 30%;
 }
 
-@media only screen and (max-width: 600px) {
+#contentFlex {
+  width: 30%;
+}
+
+@media only screen and (max-width: 800px) {
   #QRFlex {
+    width: 90%;
+  }
+  #contentFlex {
     width: 90%;
   }
 }
