@@ -31,11 +31,11 @@ function Scanner() {
       const hash = re.exec(scanData);
       if (hash) {
         toast({
-          title: "Checking QR code.",
+          title: 'Checking QR code.',
           description: "Hold on, we're checking this QR code.",
           status: 'info',
           duration: 10000,
-          isClosable: false
+          isClosable: false,
         });
         axios
           .post(
@@ -57,7 +57,7 @@ function Scanner() {
               } else {
                 toast({
                   title: "You're not logged in!",
-                  description: "Please log in and try again!",
+                  description: 'Please log in and try again!',
                   status: 'error',
                   duration: 2000,
                 });
@@ -74,13 +74,13 @@ function Scanner() {
               duration: 2000,
             });
           });
-      }else{
+      } else {
         toast.closeAll();
         toast({
-          title: "Bad QR code",
+          title: 'Bad QR code',
           status: 'error',
           duration: 3000,
-          isClosable: true
+          isClosable: true,
         });
       }
     }

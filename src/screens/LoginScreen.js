@@ -14,13 +14,13 @@ function Login() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   if (isAuthenticated) return <Redirect to="/home" />;
 
-  const handleTelegramResponse = (response) => {
+  const handleTelegramResponse = response => {
     toast({
-      title: "Logging you in",
+      title: 'Logging you in',
       description: "Hold on, we're logging you in.",
       status: 'info',
       duration: 10000,
-      isClosable: false
+      isClosable: false,
     });
     axios
       .post(
@@ -36,9 +36,9 @@ function Login() {
         if (response.data.authorized) {
           dispatch(authLogin());
           toast.closeAll();
-          if(response.data.contactSuccess){
+          if (response.data.contactSuccess) {
             history.push('/success');
-          }else{
+          } else {
             history.push('/home');
           }
         } else {
@@ -55,8 +55,8 @@ function Login() {
       })
       .catch(err => {
         toast.closeAll();
-        if(err.response){
-          if(err.response.status === 401){
+        if (err.response) {
+          if (err.response.status === 401) {
             dispatch(authLogout());
             toast({
               title: 'Login Failed',
@@ -66,7 +66,7 @@ function Login() {
               isClosable: true,
             });
           }
-        }else{
+        } else {
           toast({
             title: 'An error occurred',
             description: 'Sorry, an error occurred on our side.',
@@ -75,7 +75,6 @@ function Login() {
             isClosable: true,
           });
         }
-        
       });
   };
 
@@ -86,26 +85,45 @@ function Login() {
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" mt={5} mb={5} background="white" p={12} rounded={6} id="contentFlex">
+      <Flex
+        direction="column"
+        mt={5}
+        mb={5}
+        background="white"
+        p={12}
+        rounded={6}
+        id="contentFlex"
+      >
         <Heading size="xl" mb={6}>
           SSR Covid Tracing
         </Heading>
         <Heading size="lg" mb={4}>
           Login
         </Heading>
-        <TelegramLoginButton dataOnauth={handleTelegramResponse} botName={process.env.REACT_APP_TELEGRAM_BOT_NAME} />
-        <Divider mb={6} mt={6}/>
+        <TelegramLoginButton
+          dataOnauth={handleTelegramResponse}
+          botName={process.env.REACT_APP_TELEGRAM_BOT_NAME}
+        />
+        <Divider mb={6} mt={6} />
         <Text fontSize="sm">
-          <b>Privacy notes:</b> <br/>
-          Telegram Login allows us to verify your identity, without
-          collecting any of your data. Telegram does NOT give us your
-          phone number. The only piece of information stored on our server
-          is your Telegram ID, this is an internal ID Number Telegram uses
-          that is SEPARATE from your Telegram Username.
-          <br/><br/>
-          All the code for this project is <Link color="teal.500" href="https://github.com/naresh97/ssr-tracing" isExternal>Open Source</Link>, that means anyone,
-          including you can audit and verify that your information is being
-          handled securely.
+          <b>Privacy notes:</b> <br />
+          Telegram Login allows us to verify your identity, without collecting
+          any of your data. Telegram does NOT give us your phone number. The
+          only piece of information stored on our server is your Telegram ID,
+          this is an internal ID Number Telegram uses that is SEPARATE from your
+          Telegram Username.
+          <br />
+          <br />
+          All the code for this project is{' '}
+          <Link
+            color="teal.500"
+            href="https://github.com/naresh97/ssr-tracing"
+            isExternal
+          >
+            Open Source
+          </Link>
+          , that means anyone, including you can audit and verify that your
+          information is being handled securely.
         </Text>
       </Flex>
     </Flex>

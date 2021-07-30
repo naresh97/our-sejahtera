@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 const initialState = {
-  isAuthenticated: Cookies.get('authorized') === "true" ? true : false,
+  isAuthenticated: Cookies.get('authorized') === 'true' ? true : false,
 };
 
 export const authSlice = createSlice({

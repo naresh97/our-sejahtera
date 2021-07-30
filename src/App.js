@@ -24,7 +24,7 @@ function App() {
         <Route path="/scanner">
           <Scanner />
         </Route>
-        <Route path="/verify/:id" component={Verify}/>
+        <Route path="/verify/:id" component={Verify} />
         <Route path="/">
           <Redirect to="/home" />
         </Route>
