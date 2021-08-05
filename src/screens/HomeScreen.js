@@ -1,4 +1,10 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
   Button,
   Divider,
   Flex,
@@ -6,12 +12,14 @@ import {
   Link,
   Spinner,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { Fragment, React, useEffect, useState } from 'react';
+import { Fragment, React, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
+import { setCovidPositive } from '../features/auth/covidSlice';
 
 function QRCode() {
   const [url, setURL] = useState(null);
@@ -41,6 +49,93 @@ function QRCode() {
   }
 }
 
+function ConfirmCOVIDPositiveAlertDialog() {
+
+  const [isOpen, setOpen] = useState(false);
+  const toast = useToast();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const onClose = () => { setOpen(false) }
+  const showErrorToast = (errorMessage = "An error has occured.") => {
+    toast.closeAll();
+    toast({
+      title: 'Error!',
+      description: errorMessage,
+      status: 'error',
+      duration: 5000
+    });
+  }
+  const onConfirm = () => {
+    toast({
+      title: 'Confirming',
+      description: 'Hold on while we confirm with our servers.',
+      status: 'info',
+      duration: 10000
+    });
+    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{
+      setPositive: true,
+    },{withCredentials:true})
+    .then(res => {
+      if(res.data.covidPositive){
+        dispatch(setCovidPositive());
+        toast.closeAll();
+        toast({
+          title: "Confirmed!",
+          status: 'info',
+          duration: 2000,
+        });
+      }else{
+        showErrorToast();
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      try{
+        if(err.response.status === 401){
+          showErrorToast("You are not logged in!");
+          history.push("/login");
+        }else{
+          showErrorToast();
+        }
+      }catch(e){
+        showErrorToast();
+      }
+    });
+    setOpen(false);
+  }
+  const cancelRef = useRef();
+
+  return (
+    <>
+      <Button colorScheme="red" mb={6} onClick={() => { setOpen(true); }}>
+        Report Positive COVID19
+      </Button>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              Confirm Tested COVID19 Positive
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Please confirm that you have been tested POSITIVE with
+              COVID19. Upon confirmation, this app will inform the people
+              you have come in contact with in the last 7 days.
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>Cancel</Button>
+              <Button colorScheme="red" onClick={onConfirm} ml={3}>Confirm</Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
+  );
+}
+
 function Home() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -51,7 +146,18 @@ function Home() {
   };
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
+  useEffect( ()=>{
+    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{},{withCredentials:true})
+    .then(res=>{
+        if(res.data.covidPositive){
+            dispatch(setCovidPositive());
+        }
+    })
+    .catch(err=>{});
+}, [dispatch]);
   if (!isAuthenticated) return <Redirect to="/login" />;
+  if (isCovidPositive) return <Redirect to="/lockout" />;
 
   return (
     <Flex
@@ -98,7 +204,9 @@ function Home() {
           </Fragment>
         )}
         <Divider mb={6} />
-        <Button colorScheme="red" mb={6} onClick={handleLogout}>
+        <ConfirmCOVIDPositiveAlertDialog />
+        <Divider mb={6} />
+        <Button colorScheme="blackAlpha" mb={6} onClick={handleLogout}>
           Log Out!
         </Button>
       </Flex>
