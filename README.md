@@ -1,17 +1,14 @@
-# SSR Contact Tracing App
+# Our Sejahtera Contact Tracing App
 
-This app was created to serve the need for easy to use contact tracing.
+This app was created to serve the need for easy to use contact tracing. The app aims to collect the minimum amount of information while still having robust contact tracing.
 
 ## Usage
 
 The app should work as such:
 
-1. Group/Organization leaders will be created an account on the app.
-2. Upon logging in, they will see a QR code that they can display
-3. Their members can scan this QR code, in order to create their own accounts. This way, there each member has a "parent" member, and all memberships can be traced.
-4. Upon creating their account, new members will also have a QR Code they can display.
-5. Other members can scan each other QR codes in order to register a _Contact_ in the backend.
-6. All _Contacts_ between members can be retrievable from the backend at a later time.
+1. Anyone can log into the app using their Telegram account
+2. They may present their QR code to be scanned by others, and they may scan other QR codes as well. These will be registered as _Contacts_
+3. Users may report being tested positive with COVID19, and the app will inform all their _Contacts_
 
 ## Development
 
