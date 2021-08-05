@@ -7,6 +7,7 @@ import Success from './screens/SuccessScreen';
 import './App.css';
 import Verify from './screens/VerifyScreen';
 import Scanner from './screens/ScannerScreen';
+import Lockout from './screens/LockoutScreen';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           <Scanner />
         </Route>
         <Route path="/verify/:id" component={Verify} />
+        <Route path="/lockout">
+          <Lockout />
+        </Route>
         <Route path="/">
           <Redirect to="/home" />
         </Route>
