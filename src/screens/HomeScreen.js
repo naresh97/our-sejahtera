@@ -78,10 +78,11 @@ function ConfirmCOVIDPositiveAlertDialog() {
     .then(res => {
       if(res.data.covidPositive){
         dispatch(setCovidPositive());
+        toast.closeAll();
         toast({
           title: "Confirmed!",
           status: 'info',
-          duration: 500,
+          duration: 2000,
         });
       }else{
         showErrorToast();
