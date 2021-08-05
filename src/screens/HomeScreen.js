@@ -146,6 +146,15 @@ function Home() {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
+  useEffect( ()=>{
+    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{},{withCredentials:true})
+    .then(res=>{
+        if(res.data.covidPositive){
+            dispatch(setCovidPositive());
+        }
+    })
+    .catch(err=>{});
+}, [dispatch]);
   if (!isAuthenticated) return <Redirect to="/login" />;
   if (isCovidPositive) return <Redirect to="/lockout" />;
 

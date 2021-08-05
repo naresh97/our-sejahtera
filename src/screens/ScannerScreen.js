@@ -5,6 +5,7 @@ import QrReader from 'react-qr-reader';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
+import { setCovidPositive } from '../features/auth/covidSlice';
 
 function Scanner() {
   const toast = useToast();
@@ -87,7 +88,18 @@ function Scanner() {
   }, [scanData, dispatch, history, toast]);
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
+  useEffect( ()=>{
+    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{},{withCredentials:true})
+    .then(res=>{
+        if(res.data.covidPositive){
+            dispatch(setCovidPositive());
+        }
+    })
+    .catch(err=>{});
+}, [dispatch]);
   if (!isAuthenticated) return <Redirect to="/login" />;
+  if (isCovidPositive) return <Redirect to="/lockout" />;
 
   return (
     <Flex
