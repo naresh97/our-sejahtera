@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,10 +11,17 @@ function Lockout() {
   const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
   const dispatch = useDispatch();
   const history = useHistory();
+  const toast = useToast();
 
   useEffect(() => {
+    toast({
+      title: 'Checking your lockout status...',
+      status: 'info',
+      duration: 10000,
+    });
     axios.post(`${process.env.REACT_APP_API_URL}/covid`, {}, { withCredentials: true })
       .then(res => {
+        toast.closeAll();
         if (res.data.covidPositive) {
           dispatch(setCovidPositive());
         } else if (res.data.covidPositive === false) {
@@ -26,12 +33,19 @@ function Lockout() {
           if (err.response.status === 401) {
             dispatch(authLogout());
             history.push("/login");
+          }else{
+            toast.closeAll();
+            toast({
+              title: 'Server Error Occurred',
+              status: 'error',
+              duration: 10000,
+            });
           }
         }
         catch (e) { }
       });
 
-  }, [dispatch, history]);
+  }, [dispatch, history, toast]);
 
   if (!isAuthenticated) return <Redirect to="/login" />;
   if (!isCovidPositive) return <Redirect to="/home" />;
