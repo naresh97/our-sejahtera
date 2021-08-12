@@ -29,12 +29,12 @@ function Lockout() {
         }
       })
       .catch(err => {
+        toast.closeAll();
         try {
           if (err.response.status === 401) {
             dispatch(authLogout());
             history.push("/login");
           }else{
-            toast.closeAll();
             toast({
               title: 'Server Error Occurred',
               status: 'error',
