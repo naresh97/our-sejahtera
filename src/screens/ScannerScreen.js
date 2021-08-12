@@ -34,7 +34,7 @@ function Scanner() {
       const hash = re.exec(scanData);
       if (hash) {
         toast({
-          title: t("checkingQRToastTitle"),
+          title: t('checkingQRToastTitle'),
           status: 'info',
           duration: 10000,
           isClosable: false,
@@ -52,13 +52,13 @@ function Scanner() {
               if (res.data.loggedIn) {
                 toast.closeAll();
                 toast({
-                  title: t("contactLoggedToastTitle"),
+                  title: t('contactLoggedToastTitle'),
                   status: 'info',
                   duration: 2000,
                 });
               } else {
                 toast({
-                  title: t("notLoggedInToastDescription"),
+                  title: t('notLoggedInToastDescription'),
                   status: 'error',
                   duration: 2000,
                 });
@@ -70,7 +70,7 @@ function Scanner() {
           .catch(e => {
             toast.closeAll();
             toast({
-              title: t("badVerificationToastTitle"),
+              title: t('badVerificationToastTitle'),
               status: 'error',
               duration: 2000,
             });
@@ -78,7 +78,7 @@ function Scanner() {
       } else {
         toast.closeAll();
         toast({
-          title: t("badQRCodeToastTitle"),
+          title: t('badQRCodeToastTitle'),
           status: 'error',
           duration: 3000,
           isClosable: true,
@@ -135,7 +135,7 @@ function Scanner() {
             history.push('/home');
           }}
         >
-          {t("showQRCode")}
+          {t('showQRCode')}
         </Button>
       </Flex>
     </Flex>

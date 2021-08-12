@@ -19,8 +19,8 @@ function Login() {
 
   const handleTelegramResponse = response => {
     toast({
-      title: t("loggingInToastTitle"),
-      description: t("loggingInToastDescription"),
+      title: t('loggingInToastTitle'),
+      description: t('loggingInToastDescription'),
       status: 'info',
       duration: 10000,
       isClosable: false,
@@ -48,7 +48,7 @@ function Login() {
           toast.closeAll();
           dispatch(authLogout());
           toast({
-            title: t("defaultErrorToastDescription"),
+            title: t('defaultErrorToastDescription'),
             description: response.data.message,
             status: 'error',
             duration: 9000,
@@ -62,8 +62,8 @@ function Login() {
           if (err.response.status === 401) {
             dispatch(authLogout());
             toast({
-              title: t("failedLoginToastTitle"),
-              description: t("failedLoginToastDescription"),
+              title: t('failedLoginToastTitle'),
+              description: t('failedLoginToastDescription'),
               status: 'error',
               duration: 9000,
               isClosable: true,
@@ -71,8 +71,8 @@ function Login() {
           }
         } else {
           toast({
-            title: t("errorToastTitle"),
-            description: t("defaultErrorToastDescription"),
+            title: t('errorToastTitle'),
+            description: t('defaultErrorToastDescription'),
             status: 'error',
             duration: 9000,
             isClosable: true,
@@ -98,10 +98,10 @@ function Login() {
         id="contentFlex"
       >
         <Heading size="xl" mb={6}>
-          {t("appTitle")}
+          {t('appTitle')}
         </Heading>
         <Heading size="lg" mb={4}>
-          {t("login")}
+          {t('login')}
         </Heading>
         <TelegramLoginButton
           dataOnauth={handleTelegramResponse}
@@ -109,26 +109,26 @@ function Login() {
         />
         <Divider mb={6} mt={6} />
         <Trans i18nKey="loginPrivacyNotice">
-        <Text fontSize="sm">
-          <b>Privacy notes:</b> <br />
-          Telegram Login allows us to verify your identity, without collecting
-          any of your data. Telegram does NOT give us your phone number. The
-          only piece of information stored on our server is your Telegram ID,
-          this is an internal ID Number Telegram uses that is SEPARATE from your
-          Telegram Username.
-          <br />
-          <br />
-          All the code for this project is{' '}
-          <Link
-            color="teal.500"
-            href="https://github.com/naresh97/our-sejahtera"
-            isExternal
-          >
-            Open Source
-          </Link>
-          , that means anyone, including you can audit and verify that your
-          information is being handled securely.
-        </Text>
+          <Text fontSize="sm">
+            <b>Privacy notes:</b> <br />
+            Telegram Login allows us to verify your identity, without collecting
+            any of your data. Telegram does NOT give us your phone number. The
+            only piece of information stored on our server is your Telegram ID,
+            this is an internal ID Number Telegram uses that is SEPARATE from
+            your Telegram Username.
+            <br />
+            <br />
+            All the code for this project is{' '}
+            <Link
+              color="teal.500"
+              href="https://github.com/naresh97/our-sejahtera"
+              isExternal
+            >
+              Open Source
+            </Link>
+            , that means anyone, including you can audit and verify that your
+            information is being handled securely.
+          </Text>
         </Trans>
       </Flex>
     </Flex>

@@ -1,8 +1,8 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
-import enTranslation from "./locales/en/common.json";
-import msTranslation from "./locales/ms/common.json";
+import enTranslation from './locales/en/common.json';
+import msTranslation from './locales/ms/common.json';
 
 const resources = {
   en: {
@@ -10,19 +10,17 @@ const resources = {
   },
   ms: {
     common: msTranslation,
-  }
+  },
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: "ms",
-    defaultNS: 'common',
-    interpolation: {
-      escapeValue: false
-    },
-    debug:true
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'ms',
+  defaultNS: 'common',
+  interpolation: {
+    escapeValue: false,
+  },
+  debug: true,
+});
 
-  export default i18n;
+export default i18n;

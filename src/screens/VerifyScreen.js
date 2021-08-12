@@ -34,12 +34,8 @@ function Verify(props) {
       });
   }, [verifyError, history, verifyID]);
 
-  const errorMessage = (
-    <Text>{t("verifyingErrorParagraph")}</Text>
-  );
-  const loadingMessage = (
-    <Text>{t("verifyingParagraph")}</Text>
-  );
+  const errorMessage = <Text>{t('verifyingErrorParagraph')}</Text>;
+  const loadingMessage = <Text>{t('verifyingParagraph')}</Text>;
 
   return (
     <Flex

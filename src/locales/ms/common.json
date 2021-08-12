@@ -1,49 +1,49 @@
 {
-    "appTitle": "OurSejahtera Contact Tracing",
+  "appTitle": "OurSejahtera Contact Tracing",
 
-    "homeExplanation": "Inilah kod QR anda. Show this to others to allow them to confirm a contact!",
-    "scanButtonLabel": "Mengimbas kod QR",
-    
-    "donateButtonLabel": "Menderma!",
-    "donateButtonParagraph": "Servers require money to run, and apps require labor to develop and maintain. You can show your support by donating what you can. Every cent counts, buy me my next coffee, or help pay for a month of server usage!",
-    
-    "logOutButtonLabel": "Daftar keluar!",
+  "homeExplanation": "Inilah kod QR anda. Show this to others to allow them to confirm a contact!",
+  "scanButtonLabel": "Mengimbas kod QR",
 
-    "covidPositiveReportButton": "Lapor kes COVID19",
-    "covidPositiveAlertHeader": "Confirm Tested COVID19 Positive",
-    "covidPositiveAlertBody": "Please confirm that you have been tested POSITIVE with COVID19. Upon confirmation, this app will inform the people you have come in contact with in the last 7 days.",
+  "donateButtonLabel": "Menderma!",
+  "donateButtonParagraph": "Servers require money to run, and apps require labor to develop and maintain. You can show your support by donating what you can. Every cent counts, buy me my next coffee, or help pay for a month of server usage!",
 
-    "confirm": "Confirm",
-    "cancel": "Cancel",
-    
-    "errorToastTitle": "Error!",
-    "defaultErrorToastDescription": "An error has occured.",
-    "confirmedToastTitle": "Confirmed!",
-    "confirmingToastTitle": "Confirming",
-    "confirmingToastDescription": "Hold on while we confirm with our servers.",
-    "notLoggedInToastDescription": "You are not logged in!",
-    "failedLoginToastTitle": "Login Failed",
-    "failedLoginToastDescription": "The wrong credentials were used",
-    "loggingInToastTitle": "Logging you in",
-    "loggingInToastDescription": "Hold on, we're logging you in.",
-    "checkingLockoutToastTitle": "Checking your lockout status...",
-    "badVerificationToastTitle": "Bad Verification",
-    "badQRCodeToastTitle": "Bad QR Code",
-    "contactLoggedToastTitle": "Contact Successfully Logged",
-    "checkingQRToastTitle": "Hold on, we're checking this QR code.",
+  "logOutButtonLabel": "Daftar keluar!",
 
-    "login": "Login",
+  "covidPositiveReportButton": "Lapor kes COVID19",
+  "covidPositiveAlertHeader": "Confirm Tested COVID19 Positive",
+  "covidPositiveAlertBody": "Please confirm that you have been tested POSITIVE with COVID19. Upon confirmation, this app will inform the people you have come in contact with in the last 7 days.",
 
-    "loginPrivacyNotice": "<0><0>Privacy notes:</0> <br/>Telegram Login allows us to verify your identity, without collecting any of your data. Telegram does NOT give us your phone number. The only piece of information stored on our server is your Telegram ID, this is an internal ID Number Telegram uses that is SEPARATE from your Telegram Username.<br/><br/>All the code for this project is <8>Open Source</8>, that means anyone, including you can audit and verify that your information is being handled securely.</0>",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
 
-    "lockout": "Lockout",
-    "lockoutExplanation": "<0>You have reported that you have been tested <1>POSITIVE</1> with COVID19. This lockout is to remind you to quarantine yourself according to local COVID19 health policies. This lockout will automatically be lifted after 14 days.<br/><br/><5>Please avoid contact with other people for the duration of this lockout!</5></0>",
+  "errorToastTitle": "Error!",
+  "defaultErrorToastDescription": "An error has occured.",
+  "confirmedToastTitle": "Confirmed!",
+  "confirmingToastTitle": "Confirming",
+  "confirmingToastDescription": "Hold on while we confirm with our servers.",
+  "notLoggedInToastDescription": "You are not logged in!",
+  "failedLoginToastTitle": "Login Failed",
+  "failedLoginToastDescription": "The wrong credentials were used",
+  "loggingInToastTitle": "Logging you in",
+  "loggingInToastDescription": "Hold on, we're logging you in.",
+  "checkingLockoutToastTitle": "Checking your lockout status...",
+  "badVerificationToastTitle": "Bad Verification",
+  "badQRCodeToastTitle": "Bad QR Code",
+  "contactLoggedToastTitle": "Contact Successfully Logged",
+  "checkingQRToastTitle": "Hold on, we're checking this QR code.",
 
-    "showQRCode": "Show my QR Code",
+  "login": "Login",
 
-    "contactSavedParagraph": "We have succesfully saved your contact! Stay safe out there, and let others scan your QR code too!",
-    "returnHomeButtonLabel": "Return home",
+  "loginPrivacyNotice": "<0><0>Privacy notes:</0> <br/>Telegram Login allows us to verify your identity, without collecting any of your data. Telegram does NOT give us your phone number. The only piece of information stored on our server is your Telegram ID, this is an internal ID Number Telegram uses that is SEPARATE from your Telegram Username.<br/><br/>All the code for this project is <8>Open Source</8>, that means anyone, including you can audit and verify that your information is being handled securely.</0>",
 
-    "verifyingParagraph": "We are currently verifying you. Please wait.",
-    "verifyingErrorParagraph": "An error has occured verifying you. Please try scanning the QR code again?"
+  "lockout": "Lockout",
+  "lockoutExplanation": "<0>You have reported that you have been tested <1>POSITIVE</1> with COVID19. This lockout is to remind you to quarantine yourself according to local COVID19 health policies. This lockout will automatically be lifted after 14 days.<br/><br/><5>Please avoid contact with other people for the duration of this lockout!</5></0>",
+
+  "showQRCode": "Show my QR Code",
+
+  "contactSavedParagraph": "We have succesfully saved your contact! Stay safe out there, and let others scan your QR code too!",
+  "returnHomeButtonLabel": "Return home",
+
+  "verifyingParagraph": "We are currently verifying you. Please wait.",
+  "verifyingErrorParagraph": "An error has occured verifying you. Please try scanning the QR code again?"
 }

@@ -22,15 +22,13 @@ function Success() {
         rounded={6}
       >
         <Heading>Success!</Heading>
-        <Text fontSize="lg">
-          {t("contactSavedParagraph")}
-        </Text>
+        <Text fontSize="lg">{t('contactSavedParagraph')}</Text>
         <Button
           onClick={() => {
             history.push('/home');
           }}
         >
-          {t("returnHomeButtonLabel")}
+          {t('returnHomeButtonLabel')}
         </Button>
       </Flex>
     </Flex>

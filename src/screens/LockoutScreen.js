@@ -20,7 +20,7 @@ function Lockout() {
 
   useEffect(() => {
     toast({
-      title: t("checkingLockoutToastTitle"),
+      title: t('checkingLockoutToastTitle'),
       status: 'info',
       duration: 10000,
     });
@@ -46,7 +46,7 @@ function Lockout() {
             history.push('/login');
           } else {
             toast({
-              title: t("defaultErrorToastDescription"),
+              title: t('defaultErrorToastDescription'),
               status: 'error',
               duration: 10000,
             });
@@ -74,20 +74,20 @@ function Lockout() {
         rounded={6}
         id="contentFlex"
       >
-        <Heading>{t("Lockout")}</Heading>
+        <Heading>{t('Lockout')}</Heading>
         <Trans i18nKey="lockoutExplanation">
-        <Text>
-          You have reported that you have been tested <b>POSITIVE</b> with
-          COVID19. This lockout is to remind you to quarantine yourself
-          according to local COVID19 health policies. This lockout will
-          automatically be lifted after 14 days.
-          <br />
-          <br />
-          <b>
-            Please avoid contact with other people for the duration of this
-            lockout!
-          </b>
-        </Text>
+          <Text>
+            You have reported that you have been tested <b>POSITIVE</b> with
+            COVID19. This lockout is to remind you to quarantine yourself
+            according to local COVID19 health policies. This lockout will
+            automatically be lifted after 14 days.
+            <br />
+            <br />
+            <b>
+              Please avoid contact with other people for the duration of this
+              lockout!
+            </b>
+          </Text>
         </Trans>
       </Flex>
     </Flex>

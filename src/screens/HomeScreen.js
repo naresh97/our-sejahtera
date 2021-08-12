@@ -59,10 +59,10 @@ function ConfirmCOVIDPositiveAlertDialog() {
   const onClose = () => {
     setOpen(false);
   };
-  const showErrorToast = (errorMessage = t("defaultErrorToastDescription")) => {
+  const showErrorToast = (errorMessage = t('defaultErrorToastDescription')) => {
     toast.closeAll();
     toast({
-      title: t("errorToastTitle"),
+      title: t('errorToastTitle'),
       description: errorMessage,
       status: 'error',
       duration: 5000,
@@ -70,8 +70,8 @@ function ConfirmCOVIDPositiveAlertDialog() {
   };
   const onConfirm = () => {
     toast({
-      title: t("confirmingToastTitle"),
-      description: t("confirmingToastDescription"),
+      title: t('confirmingToastTitle'),
+      description: t('confirmingToastDescription'),
       status: 'info',
       duration: 10000,
     });
@@ -88,7 +88,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
           dispatch(setCovidPositive());
           toast.closeAll();
           toast({
-            title: t("confirmedToastTitle"),
+            title: t('confirmedToastTitle'),
             status: 'info',
             duration: 2000,
           });
@@ -100,7 +100,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
         console.log(err);
         try {
           if (err.response.status === 401) {
-            showErrorToast(t("notLoggedInToastDescription"));
+            showErrorToast(t('notLoggedInToastDescription'));
             history.push('/login');
           } else {
             showErrorToast();
@@ -122,7 +122,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
           setOpen(true);
         }}
       >
-        {t("covidPositiveReportButton")}
+        {t('covidPositiveReportButton')}
       </Button>
       <AlertDialog
         isOpen={isOpen}
@@ -132,17 +132,15 @@ function ConfirmCOVIDPositiveAlertDialog() {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader>
-              {t("covidPositiveAlertHeader")}
+              {t('covidPositiveAlertHeader')}
             </AlertDialogHeader>
-            <AlertDialogBody>
-              {t("covidPositiveAlertBody")}
-            </AlertDialogBody>
+            <AlertDialogBody>{t('covidPositiveAlertBody')}</AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
-                {t("cancel")}
+                {t('cancel')}
               </Button>
               <Button colorScheme="red" onClick={onConfirm} ml={3}>
-                {t("confirm")}
+                {t('confirm')}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -199,7 +197,7 @@ function Home() {
       >
         <QRCode />
         <Text mb={6} align="center" fontSize="lg">
-          {t("homeExplanation")}
+          {t('homeExplanation')}
         </Text>
         <Divider mb={6} />
         <Button
@@ -208,26 +206,24 @@ function Home() {
             history.push('/scanner');
           }}
         >
-          {t("scanButtonLabel")}
+          {t('scanButtonLabel')}
         </Button>
         {process.env.REACT_APP_DONATE_LINK && (
           <Fragment>
             <Divider mb={6} />
             <Link href={process.env.REACT_APP_DONATE_LINK}>
               <Button style={{ width: '100%  ' }} mb={6} colorScheme="blue">
-                {t("donateButtonlabel")}
+                {t('donateButtonlabel')}
               </Button>
             </Link>
-            <Text mb={6}>
-              {t("donateButtonParagraph")}
-            </Text>
+            <Text mb={6}>{t('donateButtonParagraph')}</Text>
           </Fragment>
         )}
         <Divider mb={6} />
         <ConfirmCOVIDPositiveAlertDialog />
         <Divider mb={6} />
         <Button colorScheme="blackAlpha" mb={6} onClick={handleLogout}>
-          {t("logOutButtonLabel")}
+          {t('logOutButtonLabel')}
         </Button>
       </Flex>
     </Flex>
