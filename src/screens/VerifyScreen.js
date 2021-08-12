@@ -43,12 +43,19 @@ function Verify(props) {
 
   return (
     <Flex
-    minHeight="100vh"
+      minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" background="white" p={12} mt={6} mb={6} rounded={6}>
+      <Flex
+        direction="column"
+        background="white"
+        p={12}
+        mt={6}
+        mb={6}
+        rounded={6}
+      >
         {verifyError ? errorMessage : loadingMessage}
       </Flex>
     </Flex>

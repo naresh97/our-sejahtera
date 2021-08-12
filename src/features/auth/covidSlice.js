@@ -16,7 +16,7 @@ export const covidSlice = createSlice({
     setCovidNegative: state => {
       state.isCovidPositive = false;
       Cookies.set('covidPositive', false);
-    }
+    },
   },
 });
 
