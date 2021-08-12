@@ -89,26 +89,38 @@ function Scanner() {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
-  useEffect( ()=>{
-    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{},{withCredentials:true})
-    .then(res=>{
-        if(res.data.covidPositive){
-            dispatch(setCovidPositive());
+  useEffect(() => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/covid`,
+        {},
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.data.covidPositive) {
+          dispatch(setCovidPositive());
         }
-    })
-    .catch(err=>{});
-}, [dispatch]);
+      })
+      .catch(err => {});
+  }, [dispatch]);
   if (!isAuthenticated) return <Redirect to="/login" />;
   if (isCovidPositive) return <Redirect to="/lockout" />;
 
   return (
     <Flex
-      height="100vh"
+      minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" background="white" p={12} rounded={6}>
+      <Flex
+        direction="column"
+        background="white"
+        p={12}
+        mb={6}
+        mt={6}
+        rounded={6}
+      >
         <QrReader
           mb={6}
           delay={300}

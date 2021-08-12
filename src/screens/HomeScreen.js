@@ -50,64 +50,76 @@ function QRCode() {
 }
 
 function ConfirmCOVIDPositiveAlertDialog() {
-
   const [isOpen, setOpen] = useState(false);
   const toast = useToast();
   const history = useHistory();
   const dispatch = useDispatch();
-  const onClose = () => { setOpen(false) }
-  const showErrorToast = (errorMessage = "An error has occured.") => {
+  const onClose = () => {
+    setOpen(false);
+  };
+  const showErrorToast = (errorMessage = 'An error has occured.') => {
     toast.closeAll();
     toast({
       title: 'Error!',
       description: errorMessage,
       status: 'error',
-      duration: 5000
+      duration: 5000,
     });
-  }
+  };
   const onConfirm = () => {
     toast({
       title: 'Confirming',
       description: 'Hold on while we confirm with our servers.',
       status: 'info',
-      duration: 10000
+      duration: 10000,
     });
-    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{
-      setPositive: true,
-    },{withCredentials:true})
-    .then(res => {
-      if(res.data.covidPositive){
-        dispatch(setCovidPositive());
-        toast.closeAll();
-        toast({
-          title: "Confirmed!",
-          status: 'info',
-          duration: 2000,
-        });
-      }else{
-        showErrorToast();
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      try{
-        if(err.response.status === 401){
-          showErrorToast("You are not logged in!");
-          history.push("/login");
-        }else{
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/covid`,
+        {
+          setPositive: true,
+        },
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.data.covidPositive) {
+          dispatch(setCovidPositive());
+          toast.closeAll();
+          toast({
+            title: 'Confirmed!',
+            status: 'info',
+            duration: 2000,
+          });
+        } else {
           showErrorToast();
         }
-      }catch(e){
-        showErrorToast();
-      }
-    });
+      })
+      .catch(err => {
+        console.log(err);
+        try {
+          if (err.response.status === 401) {
+            showErrorToast('You are not logged in!');
+            history.push('/login');
+          } else {
+            showErrorToast();
+          }
+        } catch (e) {
+          showErrorToast();
+        }
+      });
     setOpen(false);
-  }
+  };
   const cancelRef = useRef();
 
   return (
     <>
-      <Button colorScheme="red" mb={6} onClick={() => { setOpen(true); }}>
+      <Button
+        colorScheme="red"
+        mb={6}
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
         Report Positive COVID19
       </Button>
       <AlertDialog
@@ -121,13 +133,17 @@ function ConfirmCOVIDPositiveAlertDialog() {
               Confirm Tested COVID19 Positive
             </AlertDialogHeader>
             <AlertDialogBody>
-              Please confirm that you have been tested POSITIVE with
-              COVID19. Upon confirmation, this app will inform the people
-              you have come in contact with in the last 7 days.
+              Please confirm that you have been tested POSITIVE with COVID19.
+              Upon confirmation, this app will inform the people you have come
+              in contact with in the last 7 days.
             </AlertDialogBody>
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>Cancel</Button>
-              <Button colorScheme="red" onClick={onConfirm} ml={3}>Confirm</Button>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="red" onClick={onConfirm} ml={3}>
+                Confirm
+              </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>
@@ -147,21 +163,26 @@ function Home() {
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
-  useEffect( ()=>{
-    axios.post(`${process.env.REACT_APP_API_URL}/covid`,{},{withCredentials:true})
-    .then(res=>{
-        if(res.data.covidPositive){
-            dispatch(setCovidPositive());
+  useEffect(() => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/covid`,
+        {},
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.data.covidPositive) {
+          dispatch(setCovidPositive());
         }
-    })
-    .catch(err=>{});
-}, [dispatch]);
+      })
+      .catch(err => {});
+  }, [dispatch]);
   if (!isAuthenticated) return <Redirect to="/login" />;
   if (isCovidPositive) return <Redirect to="/lockout" />;
 
   return (
     <Flex
-      height="100vh"
+      minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
@@ -170,6 +191,8 @@ function Home() {
         direction="column"
         background="white"
         p={12}
+        mt={5}
+        mb={5}
         rounded={6}
         id="QRFlex"
       >

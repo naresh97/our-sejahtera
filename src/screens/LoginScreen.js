@@ -80,7 +80,7 @@ function Login() {
 
   return (
     <Flex
-      height="100%"
+      minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
