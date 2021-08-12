@@ -52,12 +52,12 @@ function Lockout() {
 
   return (
     <Flex
-      height="100vh"
+    minHeight="100vh"
       background="red.500"
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" background="white" p={12} rounded={6} id="contentFlex">
+      <Flex direction="column" background="white" mt={5} mb={5} p={12} rounded={6} id="contentFlex">
         <Heading>Lockout</Heading>
         <Text>
           You have reported that you have been tested <b>POSITIVE</b> with COVID19.

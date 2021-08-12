@@ -6,12 +6,12 @@ function Success() {
 
   return (
     <Flex
-      height="100vh"
+    minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" background="white" p={12} rounded={6}>
+      <Flex direction="column" background="white" mb={6} mt={6} p={12} rounded={6}>
         <Heading>Success!</Heading>
         <Text fontSize="lg">
           We have succesfully saved your contact! Stay safe out there, and let

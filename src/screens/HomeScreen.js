@@ -161,7 +161,7 @@ function Home() {
 
   return (
     <Flex
-      height="100vh"
+      minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
@@ -170,6 +170,8 @@ function Home() {
         direction="column"
         background="white"
         p={12}
+        mt={5}
+        mb={5}
         rounded={6}
         id="QRFlex"
       >

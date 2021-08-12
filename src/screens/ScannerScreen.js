@@ -103,12 +103,12 @@ function Scanner() {
 
   return (
     <Flex
-      height="100vh"
+    minHeight="100vh"
       background="teal.100"
       alignItems="center"
       justifyContent="center"
     >
-      <Flex direction="column" background="white" p={12} rounded={6}>
+      <Flex direction="column" background="white" p={12} mb={6} mt={6} rounded={6}>
         <QrReader
           mb={6}
           delay={300}
