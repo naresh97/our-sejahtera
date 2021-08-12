@@ -1,6 +1,7 @@
 import { Flex, Heading, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
@@ -15,10 +16,11 @@ function Lockout() {
   const dispatch = useDispatch();
   const history = useHistory();
   const toast = useToast();
+  const [t] = useTranslation();
 
   useEffect(() => {
     toast({
-      title: 'Checking your lockout status...',
+      title: t("checkingLockoutToastTitle"),
       status: 'info',
       duration: 10000,
     });
@@ -44,14 +46,14 @@ function Lockout() {
             history.push('/login');
           } else {
             toast({
-              title: 'Server Error Occurred',
+              title: t("defaultErrorToastDescription"),
               status: 'error',
               duration: 10000,
             });
           }
         } catch (e) {}
       });
-  }, [dispatch, history, toast]);
+  }, [dispatch, history, toast, t]);
 
   if (!isAuthenticated) return <Redirect to="/login" />;
   if (!isCovidPositive) return <Redirect to="/home" />;
@@ -72,7 +74,8 @@ function Lockout() {
         rounded={6}
         id="contentFlex"
       >
-        <Heading>Lockout</Heading>
+        <Heading>{t("Lockout")}</Heading>
+        <Trans i18nKey="lockoutExplanation">
         <Text>
           You have reported that you have been tested <b>POSITIVE</b> with
           COVID19. This lockout is to remind you to quarantine yourself
@@ -85,6 +88,7 @@ function Lockout() {
             lockout!
           </b>
         </Text>
+        </Trans>
       </Flex>
     </Flex>
   );

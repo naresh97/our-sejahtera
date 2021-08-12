@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { Fragment, React, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { authLogout } from '../features/auth/authSlice';
@@ -54,13 +55,14 @@ function ConfirmCOVIDPositiveAlertDialog() {
   const toast = useToast();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [t] = useTranslation();
   const onClose = () => {
     setOpen(false);
   };
-  const showErrorToast = (errorMessage = 'An error has occured.') => {
+  const showErrorToast = (errorMessage = t("defaultErrorToastDescription")) => {
     toast.closeAll();
     toast({
-      title: 'Error!',
+      title: t("errorToastTitle"),
       description: errorMessage,
       status: 'error',
       duration: 5000,
@@ -68,8 +70,8 @@ function ConfirmCOVIDPositiveAlertDialog() {
   };
   const onConfirm = () => {
     toast({
-      title: 'Confirming',
-      description: 'Hold on while we confirm with our servers.',
+      title: t("confirmingToastTitle"),
+      description: t("confirmingToastDescription"),
       status: 'info',
       duration: 10000,
     });
@@ -86,7 +88,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
           dispatch(setCovidPositive());
           toast.closeAll();
           toast({
-            title: 'Confirmed!',
+            title: t("confirmedToastTitle"),
             status: 'info',
             duration: 2000,
           });
@@ -98,7 +100,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
         console.log(err);
         try {
           if (err.response.status === 401) {
-            showErrorToast('You are not logged in!');
+            showErrorToast(t("notLoggedInToastDescription"));
             history.push('/login');
           } else {
             showErrorToast();
@@ -120,7 +122,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
           setOpen(true);
         }}
       >
-        Report Positive COVID19
+        {t("covidPositiveReportButton")}
       </Button>
       <AlertDialog
         isOpen={isOpen}
@@ -130,19 +132,17 @@ function ConfirmCOVIDPositiveAlertDialog() {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader>
-              Confirm Tested COVID19 Positive
+              {t("covidPositiveAlertHeader")}
             </AlertDialogHeader>
             <AlertDialogBody>
-              Please confirm that you have been tested POSITIVE with COVID19.
-              Upon confirmation, this app will inform the people you have come
-              in contact with in the last 7 days.
+              {t("covidPositiveAlertBody")}
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
-                Cancel
+                {t("cancel")}
               </Button>
               <Button colorScheme="red" onClick={onConfirm} ml={3}>
-                Confirm
+                {t("confirm")}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -155,6 +155,7 @@ function ConfirmCOVIDPositiveAlertDialog() {
 function Home() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [t] = useTranslation();
 
   const handleLogout = () => {
     dispatch(authLogout());
@@ -198,8 +199,7 @@ function Home() {
       >
         <QRCode />
         <Text mb={6} align="center" fontSize="lg">
-          This is your QR code. Show this to others to allow them to confirm a
-          contact, or allow them to create an account!
+          {t("homeExplanation")}
         </Text>
         <Divider mb={6} />
         <Button
@@ -208,21 +208,18 @@ function Home() {
             history.push('/scanner');
           }}
         >
-          Scan a QR Code
+          {t("scanButtonLabel")}
         </Button>
         {process.env.REACT_APP_DONATE_LINK && (
           <Fragment>
             <Divider mb={6} />
             <Link href={process.env.REACT_APP_DONATE_LINK}>
               <Button style={{ width: '100%  ' }} mb={6} colorScheme="blue">
-                Donate!
+                {t("donateButtonlabel")}
               </Button>
             </Link>
             <Text mb={6}>
-              Servers require money to run, and apps require labor to develop
-              and maintain. You can show your support by donating what you can.
-              Every cent counts, buy me my next coffee, or help pay for a month
-              of server usage!
+              {t("donateButtonParagraph")}
             </Text>
           </Fragment>
         )}
@@ -230,7 +227,7 @@ function Home() {
         <ConfirmCOVIDPositiveAlertDialog />
         <Divider mb={6} />
         <Button colorScheme="blackAlpha" mb={6} onClick={handleLogout}>
-          Log Out!
+          {t("logOutButtonLabel")}
         </Button>
       </Flex>
     </Flex>

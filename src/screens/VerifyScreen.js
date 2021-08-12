@@ -1,12 +1,14 @@
 import { Flex, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
 function Verify(props) {
   const verifyID = props.match.params.id;
   const [verifyError, setVerifyError] = useState(false);
   const history = useHistory();
+  const [t] = useTranslation();
 
   useEffect(() => {
     if (verifyError) return;
@@ -33,12 +35,10 @@ function Verify(props) {
   }, [verifyError, history, verifyID]);
 
   const errorMessage = (
-    <Text>
-      An error has occured verifying you. Please try scanning the QR code again?
-    </Text>
+    <Text>{t("verifyingErrorParagraph")}</Text>
   );
   const loadingMessage = (
-    <Text>We are currently verifying you. Please wait.</Text>
+    <Text>{t("verifyingParagraph")}</Text>
   );
 
   return (
