@@ -6,6 +6,7 @@ import { Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import TelegramLoginButton from 'react-telegram-login';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import { authLogin, authLogout } from '../features/auth/authSlice';
 
 function Login() {
@@ -109,7 +110,7 @@ function Login() {
         />
         <Divider mb={6} mt={6} />
         <Trans i18nKey="loginPrivacyNotice">
-          <Text fontSize="sm">
+          <Text mb={6} fontSize="sm">
             <b>Privacy notes:</b> <br />
             Telegram Login allows us to verify your identity, without collecting
             any of your data. Telegram does NOT give us your phone number. The
@@ -130,6 +131,8 @@ function Login() {
             information is being handled securely.
           </Text>
         </Trans>
+        <Divider mb={6} />
+        <LanguageSwitcher />
       </Flex>
     </Flex>
   );

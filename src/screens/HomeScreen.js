@@ -19,6 +19,7 @@ import { Fragment, React, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import { authLogout } from '../features/auth/authSlice';
 import { setCovidPositive } from '../features/auth/covidSlice';
 
@@ -225,6 +226,8 @@ function Home() {
         <Button colorScheme="blackAlpha" mb={6} onClick={handleLogout}>
           {t('logOutButtonLabel')}
         </Button>
+        <Divider mb={6} />
+        <LanguageSwitcher />
       </Flex>
     </Flex>
   );
