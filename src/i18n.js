@@ -18,12 +18,12 @@ const resources = {
   },
   ta: {
     common: taTranslation,
-  }
+  },
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: Cookies.get('lang') ? Cookies.get('lang') : "en",
+  lng: Cookies.get('lang') ? Cookies.get('lang') : 'en',
   defaultNS: 'common',
   interpolation: {
     escapeValue: false,
