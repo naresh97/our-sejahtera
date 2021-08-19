@@ -1,8 +1,10 @@
 import { Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
 function Success() {
   const history = useHistory();
+  const [t] = useTranslation();
 
   return (
     <Flex
@@ -20,16 +22,13 @@ function Success() {
         rounded={6}
       >
         <Heading>Success!</Heading>
-        <Text fontSize="lg">
-          We have succesfully saved your contact! Stay safe out there, and let
-          others scan your QR code too!
-        </Text>
+        <Text fontSize="lg">{t('contactSavedParagraph')}</Text>
         <Button
           onClick={() => {
             history.push('/home');
           }}
         >
-          Return home
+          {t('returnHomeButtonLabel')}
         </Button>
       </Flex>
     </Flex>
