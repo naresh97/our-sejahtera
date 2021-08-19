@@ -1,0 +1,49 @@
+{
+  "appTitle": "Pengesanan Kontak OurSejahtera",
+
+  "homeExplanation": "Ini ialah kod QR anda. Tunjukkan kepada pengguna lain untuk mengesahkan kenalan.",
+  "scanButtonLabel": "Imbas kod QR",
+
+  "donateButtonLabel": "Derma!",
+  "donateButtonParagraph": "Memelihara server memerlukan wang dan membuat serta memantau aplikasi memerlukan tenaga kerja. Anda boleh menghulurkan bantuan dengan menderma mengikut kemampuan. Setiap sen ada nilainya.",
+
+  "logOutButtonLabel": "Daftar Keluar!",
+
+  "covidPositiveReportButton": "Laporkan Positif COVID19",
+  "covidPositiveAlertHeader": "Sahkan Diuji Positif COVID19",
+  "covidPositiveAlertBody": "Sila sahkan bahawa anda telah diuji positif COVID19. Atas pengesahan, aplikasi ini akan memaklumkan para individu yang telah bersemuka dengan anda dalam 7 hari yang lepas.",
+
+  "confirm": "Sahkan",
+  "cancel": "Batalkan",
+
+  "errorToastTitle": "Ralat!",
+  "defaultErrorToastDescription": "Ralat Berlaku.",
+  "confirmedToastTitle": "Disahkan!",
+  "confirmingToastTitle": "Mengesahkan",
+  "confirmingToastDescription": "Sila tunggu sebentar sementara kami sedang mengesahkan dengan server kami.",
+  "notLoggedInToastDescription": "Anda tidak didaftar masuk!",
+  "failedLoginToastTitle": "Gagal Daftar Masuk",
+  "failedLoginToastDescription": "Kelayakan yang salah telah digunakan",
+  "loggingInToastTitle": "Mendaftar masuk",
+  "loggingInToastDescription": "Sila tunggu sebentar sementara anda didaftar masuk.",
+  "checkingLockoutToastTitle": "Memeriksa status lockout anda...",
+  "badVerificationToastTitle": "Pengesahan Tidak Berfungsi",
+  "badQRCodeToastTitle": "Kod QR Tidak Berfungsi",
+  "contactLoggedToastTitle": "Kontak Berjaya Didaftar",
+  "checkingQRToastTitle": "Sila tunggu sebentar. Kami sedang memeriksa kod QR ini.",
+
+  "login": "Daftar Masuk",
+
+  "loginPrivacyNotice": "<0><0>Notis Privasi:</0> <br/>Pendaftaran masuk melalui Telegram membolehkan pengesahan identiti anda tanpa pengumpulan data peribadi anda. Telegram TIDAK mendedahkan nombor telefon anda. Hanya ID Telegram anda akan disimpan dalam server kami. Ini ialah Nombor ID Telegram dalaman yang digunakan oleh Telegram dan BUKANNYA nama pengguna Telegram anda.<br/><br/>Segala kod untuk projek ini ialah <8>Sumber Terbuka</8>, bermaksud sesiapa sahaja, termasuk diri anda boleh mengaudit dan mengesahkan bahawa segala maklumat dikendalikan dengan selamat.</0>",
+
+  "lockout": "Lockout",
+  "lockoutExplanation": "<0>Anda telah laporkan bahawa anda diuji <1>POSITIF</1> COVID19. Lockout ini adalah untuk mengingatkan anda supaya mengkuarantinkan diri mengikut polisi kesihatan COVID19 tempatan. Lockout ini akan dibatalkan selepas 14 hari.<br/><br/><5>Anda diminta untuk elak daripada berinteraksi dengan orang lain sewaktu lockout ini.</5></0>",
+
+  "showQRCode": "Tunjuk kod QR saya",
+
+  "contactSavedParagraph": "Kontak anda berjaya disimpan! Jaga kesejahteraan diri dan berikan orang lain imbas kod QR anda juga!",
+  "returnHomeButtonLabel": "Kembali",
+
+  "verifyingParagraph": "Kami sedang mengesahkan anda. Sila tunggu sebentar.",
+  "verifyingErrorParagraph": "Ralat berlaku sewaktu pengesahan. Sila imbas kod QR sekali lagi."
+}

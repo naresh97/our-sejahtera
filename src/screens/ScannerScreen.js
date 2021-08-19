@@ -1,6 +1,7 @@
 import { Button, Divider, Flex, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import QrReader from 'react-qr-reader';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
@@ -11,6 +12,7 @@ function Scanner() {
   const toast = useToast();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [t] = useTranslation();
 
   const [scanData, setScanData] = useState(null);
 
@@ -32,8 +34,7 @@ function Scanner() {
       const hash = re.exec(scanData);
       if (hash) {
         toast({
-          title: 'Checking QR code.',
-          description: "Hold on, we're checking this QR code.",
+          title: t('checkingQRToastTitle'),
           status: 'info',
           duration: 10000,
           isClosable: false,
@@ -51,14 +52,13 @@ function Scanner() {
               if (res.data.loggedIn) {
                 toast.closeAll();
                 toast({
-                  title: 'Contact Succesfully Logged',
+                  title: t('contactLoggedToastTitle'),
                   status: 'info',
                   duration: 2000,
                 });
               } else {
                 toast({
-                  title: "You're not logged in!",
-                  description: 'Please log in and try again!',
+                  title: t('notLoggedInToastDescription'),
                   status: 'error',
                   duration: 2000,
                 });
@@ -70,7 +70,7 @@ function Scanner() {
           .catch(e => {
             toast.closeAll();
             toast({
-              title: 'Bad Verification',
+              title: t('badVerificationToastTitle'),
               status: 'error',
               duration: 2000,
             });
@@ -78,14 +78,14 @@ function Scanner() {
       } else {
         toast.closeAll();
         toast({
-          title: 'Bad QR code',
+          title: t('badQRCodeToastTitle'),
           status: 'error',
           duration: 3000,
           isClosable: true,
         });
       }
     }
-  }, [scanData, dispatch, history, toast]);
+  }, [scanData, dispatch, history, toast, t]);
 
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const isCovidPositive = useSelector(state => state.covid.isCovidPositive);
@@ -135,7 +135,7 @@ function Scanner() {
             history.push('/home');
           }}
         >
-          Show my QR Code
+          {t('showQRCode')}
         </Button>
       </Flex>
     </Flex>
