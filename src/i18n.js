@@ -28,7 +28,7 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-  debug: true,
+  debug: process.env.REACT_APP_I18N_DEBUG === "true" ? true : false,
 });
 
 export default i18n;
