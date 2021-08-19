@@ -37,8 +37,8 @@ function LanguageSwitcher() {
     >
       <option value="en">English</option>
       <option value="ms">Bahasa Melayu</option>
-      <option value="zh">中文</option>
-      <option value="ta">தமிழ்</option>
+      {/*<option value="zh">中文</option>
+      <option value="ta">தமிழ்</option>*/}
     </Select>
   );
 }
